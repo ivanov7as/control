@@ -1,52 +1,36 @@
-﻿Console.WriteLine("Введите первое целое число");
+﻿Console.WriteLine("Введите трехзначное число");
 int num1 = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите второе целое число");
+num1 = (num1 / 10)%10;
+Console.WriteLine ("Второе число " + num1);
+
+Console.WriteLine("Введите число");
 int num2 = Convert.ToInt32 (Console.ReadLine());
-if (num1 < num2)
+if (num2 < 100){
+    Console.WriteLine("Третьего числа нет");
+ }
+else
 {
-    Console.WriteLine ("Максимальное число из двух чисел " + num2);
-    Console.WriteLine ("Минимальное число из двух чисел " + num1);
-
-}
-if (num1 > num2)
-{
-    Console.WriteLine ("Максимальное число из двух чисел " + num1);
-    Console.WriteLine ("Минимальное число из двух чисел " + num2);  
-}
-if (num1 == num2)
-{
-    Console.WriteLine ("числа равны");  
-
+while (num2>1000){
+    num2 = num2/10;
 }
 
-Console.WriteLine("Введите третье целое число");
+int thirdNumber;
+thirdNumber = (num2 % 100)%10;
+Console.WriteLine("Третья цифра " + thirdNumber);
+}
+Console.WriteLine("Ведите цифрру");
 int num3 = Convert.ToInt32 (Console.ReadLine());
-int max = num1;
-if (max < num2)
+
+if (num3 <= 5)
 {
-    max = num2;
+    Console.WriteLine("День рабочий");
 }
-if (max < num3 )
+else if (num3 <=7)
 {
-    max = num3;
-}
-Console.WriteLine ( "Максимальное число из трех чисел " + max);
-Console.WriteLine("Введите число для проверки четности");
-int numParity = Convert.ToInt32 (Console.ReadLine());
-if (numParity%2 == 0)
-{
-    Console.WriteLine ("Число четное");  
+    Console.WriteLine("День выходной");
+
 }
 else
 {
-    Console.WriteLine ("Число нечетное");  
-
-}
-Console.WriteLine("Введите число N, вывода всех четных чисел от 1 до N");
-int numN = Convert.ToInt32 (Console.ReadLine());
-int a = 2;
-while (a <= numN)
-{
-    Console.Write(a+ " ");
-    a = a + 2;
+    Console.WriteLine("Введите правильную цифру");
 }
