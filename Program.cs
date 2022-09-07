@@ -1,88 +1,107 @@
-﻿string asqrtb(){
-Console.WriteLine("Введите число A");
-int a = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите число B");
-int b = Convert.ToInt32 (Console.ReadLine());
-int c = a;
-for (int i=1; i < b; i++)
-    {
-        a=a*c;
-    }
-string answer = ("A в степени B равно " + a);
-return answer;
-}
-Console.WriteLine(asqrtb());
-
-string summofnum()
+﻿void paritynum()
 {
-Console.WriteLine("Введите число");
+Console.WriteLine("Введите размер массива N");
 int num1 = Convert.ToInt32 (Console.ReadLine());
-int sum = 0;
-while (num1>0)
+int[] array = new int[num1];
+int parity = 0;
+for (int i = 0; i < array.Length; i++)
 {
-    sum = sum + num1%10;
-    num1 = num1/10;
+    array[i] = new Random().Next(100, 999);
+    Console.Write(array[i]+ " ");
 }
-string summof =  ("Сумма чисмел " + sum);
-return summof;
-}
-Console.WriteLine(summofnum());
-
-stringarray();
-void stringarray()
+for (int i = 0; i < array.Length; i++)
 {
-int [] array = new int[8];
-for (int i = 0; i <array.Length; i++)
-{
-    Console.Write("Введите элемент " + (i+1) + " ");
-    array[i] = Convert.ToInt32(Console.ReadLine());
-    
-}
-for (int i = 0; i <array.Length; i++)
-{
-    System.Console.Write("{0} ", array[i]);
-}
-}
-
-median();
-void median()
-{
-Console.WriteLine("Введите размерность массива N");
-int n = Convert.ToInt32 (Console.ReadLine());
-int [] arr = new int[n];
-int temp;
-double med;
-for (int i = 0; i < arr.Length; i++)
-{
-    arr[i] = new Random().Next(1, 100);
-}
-for (int i = 0; i < arr.Length; i++)
-{
-    for (int j = i; j < arr.Length; j++)
+    if (array[i]%2==0)
     {
-        if (arr[i] > arr[j])
-        {
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
+        parity = parity + 1;
     }
 }
- 
-Console.WriteLine("Отсортированный массив");
-for (int i = 0; i < arr.Length; i++)
+Console.WriteLine("Количество четных чисел " + parity);
+}
+paritynum();
+
+void unparitypositionsum()
 {
-    Console.WriteLine(arr[i]);
-}
-Console.WriteLine("Медианное значение");
-if (n%2 == 0)
+Console.WriteLine("Введите размер массива N");
+int num2 = Convert.ToInt32 (Console.ReadLine());
+int[] array = new int[num2];
+int sum = 0;
+for (int i = 0; i < array.Length; i++)
 {
-    med = (arr[((n-1)/2)]+arr[n/2])/2;
-    Console.WriteLine(med);    
+    array[i] = new Random().Next(1, 99);
+    Console.Write(array[i]+ " ");
 }
-else
+for (int i = 1; i < array.Length; i++)
 {
-    med = arr[(n/2)];
-    Console.WriteLine(med);
+    if (i%2>0)
+    {
+    sum = sum + array[i];
+    }
 }
+Console.WriteLine("Сумма чисел на нечетных позициях " + sum);
 }
+unparitypositionsum();
+
+void minmaxsum()
+{
+Console.WriteLine("Введите размер массива N");
+int num2 = Convert.ToInt32 (Console.ReadLine());
+int[] array = new int[num2];
+int sum = 0;
+for (int i = 0; i < array.Length; i++)
+{
+    array[i] = new Random().Next(1, 99);
+    Console.Write(array[i]+ " ");
+}
+int min = array[0];
+int max = array[0];
+for (int i = 0; i < array.Length; i++)
+{
+    if (array[i]<min)
+    {
+        min=array[i];
+    } 
+}
+for (int i = 0; i < array.Length; i++)
+{
+     if (array[i]>max)
+    {
+        max=array[i];
+    } 
+}
+sum = min + max;
+Console.WriteLine("Сумма минимального и максимального числа " + sum);
+}
+minmaxsum();
+
+void nspace()
+{
+Console.WriteLine("Введите размерность пространства N");
+int n = Convert.ToInt32 (Console.ReadLine());
+int[] arrone = new int[n];
+int[] arrtwo = new int[n];
+for (int i = 0; i < arrone.Length; i++)
+{
+Console.Write("Введите координаты первой точки ");    
+arrone[i] = Convert.ToInt32 (Console.ReadLine());
+}
+for (int i = 0; i < arrtwo.Length; i++)
+{
+Console.Write("Введите координаты второй точки ");    
+arrtwo[i] = Convert.ToInt32 (Console.ReadLine());
+}
+int sumofsqrdif =0;
+int difpoint;
+for (int i = 0; i < n; i++)
+{
+difpoint = (arrone[i]-arrtwo[i])*(arrone[i]-arrtwo[i]);
+sumofsqrdif = sumofsqrdif + difpoint;
+}
+double length = Math.Sqrt(sumofsqrdif);
+Console.WriteLine("Расстояние между точками " + length);
+}
+nspace();
+
+
+
+
