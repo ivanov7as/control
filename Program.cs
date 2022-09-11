@@ -1,107 +1,77 @@
-﻿void paritynum()
+﻿void m()
 {
-Console.WriteLine("Введите размер массива N");
-int num1 = Convert.ToInt32 (Console.ReadLine());
-int[] array = new int[num1];
-int parity = 0;
-for (int i = 0; i < array.Length; i++)
+Console.Write("Введите M чисел ");
+int[] array = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+int count = 0;
+ for (int i = 0; i < array.Length; i++)
 {
-    array[i] = new Random().Next(100, 999);
-    Console.Write(array[i]+ " ");
-}
-for (int i = 0; i < array.Length; i++)
-{
-    if (array[i]%2==0)
+    if (array[i] > 0)
     {
-        parity = parity + 1;
+        count = count + 1;
     }
 }
-Console.WriteLine("Количество четных чисел " + parity);
+ 
+Console.WriteLine("Количсетво элементов больше нуля - " + count);
 }
-paritynum();
+m();
 
-void unparitypositionsum()
+void crosspoint()
 {
-Console.WriteLine("Введите размер массива N");
-int num2 = Convert.ToInt32 (Console.ReadLine());
-int[] array = new int[num2];
-int sum = 0;
-for (int i = 0; i < array.Length; i++)
-{
-    array[i] = new Random().Next(1, 99);
-    Console.Write(array[i]+ " ");
+Console.WriteLine("Введите b1");
+double b1 = Convert.ToInt32 (Console.ReadLine());
+Console.WriteLine("Введите k1");
+double k1 = Convert.ToInt32 (Console.ReadLine());
+Console.WriteLine("Введите b2");
+double b2 = Convert.ToInt32 (Console.ReadLine());
+Console.WriteLine("Введите k2");
+double k2 = Convert.ToInt32 (Console.ReadLine());
+double y = k1*(b2-b1)/(k1-k2) + b1;
+double x =(b2-b1)/(k1-k2);
+Console.WriteLine("Координата точки пересечения " + x + " " + y );
 }
-for (int i = 1; i < array.Length; i++)
-{
-    if (i%2>0)
-    {
-    sum = sum + array[i];
-    }
-}
-Console.WriteLine("Сумма чисел на нечетных позициях " + sum);
-}
-unparitypositionsum();
+crosspoint();
 
-void minmaxsum()
+void triangle()
 {
-Console.WriteLine("Введите размер массива N");
-int num2 = Convert.ToInt32 (Console.ReadLine());
-int[] array = new int[num2];
-int sum = 0;
-for (int i = 0; i < array.Length; i++)
-{
-    array[i] = new Random().Next(1, 99);
-    Console.Write(array[i]+ " ");
-}
-int min = array[0];
-int max = array[0];
-for (int i = 0; i < array.Length; i++)
-{
-    if (array[i]<min)
-    {
-        min=array[i];
-    } 
-}
-for (int i = 0; i < array.Length; i++)
-{
-     if (array[i]>max)
-    {
-        max=array[i];
-    } 
-}
-sum = min + max;
-Console.WriteLine("Сумма минимального и максимального числа " + sum);
-}
-minmaxsum();
 
-void nspace()
+Console.WriteLine("Введите первое число");
+double a = Convert.ToInt32 (Console.ReadLine());
+Console.WriteLine("Введите второе число");
+double b = Convert.ToInt32 (Console.ReadLine());
+Console.WriteLine("Введите третье число");
+double c = Convert.ToInt32 (Console.ReadLine());
+if (a < b + c && b < a + c && c < a + b)
 {
-Console.WriteLine("Введите размерность пространства N");
-int n = Convert.ToInt32 (Console.ReadLine());
-int[] arrone = new int[n];
-int[] arrtwo = new int[n];
-for (int i = 0; i < arrone.Length; i++)
+    Console.WriteLine ("Являются сторонами треугольника");
+}
+else
 {
-Console.Write("Введите координаты первой точки ");    
-arrone[i] = Convert.ToInt32 (Console.ReadLine());
+    Console.WriteLine ("Не являются сторонами треугольника");
 }
-for (int i = 0; i < arrtwo.Length; i++)
+double p = (a+b+c)/2;
+double s = Math. Sqrt(p * (p-a)*(p-b)*(p-c));
+Console.WriteLine ("Площадь треугольника " + s);
+double alpha = (Math.Acos((a*a + c*c - b*b)/(2*a*c)))*180/Math.PI;
+Console.WriteLine ("Угол альфа " + alpha + " градуса");
+double betha = (Math.Acos((a*a + b*b - c*c)/(2*a*b)))*180/Math.PI;
+Console.WriteLine ("Угол бета " + betha + " градуса");
+double gamma = (Math.Acos((b*b + c*c - a*a)/(2*c*b)))*180/Math.PI;
+Console.WriteLine ("Угол гамма " + gamma + " градуса");
+if (alpha == 90 || betha == 90 || gamma == 90)
 {
-Console.Write("Введите координаты второй точки ");    
-arrtwo[i] = Convert.ToInt32 (Console.ReadLine());
+    Console.WriteLine("Треугольник прямоугольный");
 }
-int sumofsqrdif =0;
-int difpoint;
-for (int i = 0; i < n; i++)
+if (alpha == betha && betha == gamma && gamma == alpha)
 {
-difpoint = (arrone[i]-arrtwo[i])*(arrone[i]-arrtwo[i]);
-sumofsqrdif = sumofsqrdif + difpoint;
+    Console.WriteLine("Треугольник равносторонний");
 }
-double length = Math.Sqrt(sumofsqrdif);
-Console.WriteLine("Расстояние между точками " + length);
+if ((alpha == betha && gamma != alpha) || (betha == gamma && alpha !=betha) || (gamma == alpha && betha !=gamma))
+{
+    Console.WriteLine("Треугольник равнобедренный");
 }
-nspace();
-
-
-
-
+if (alpha == 90 && betha == 90 && gamma == 90)
+{
+    Console.WriteLine("Треугольник прямоугольный");
+}
+}
+triangle();
