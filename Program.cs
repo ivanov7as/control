@@ -1,77 +1,116 @@
-﻿void m()
+﻿void fillnmarray()
 {
-Console.Write("Введите M чисел ");
-int[] array = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
-int count = 0;
- for (int i = 0; i < array.Length; i++)
+Console.WriteLine("Введите количество строк:");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов:");
+int n = Convert.ToInt32(Console.ReadLine());
+double[,] array = new double[m, n];
+ 
+for (int i = 0; i < m; i++) 
 {
-    if (array[i] > 0)
-    {
-        count = count + 1;
-    }
+    for (int j = 0; j <n; j++)
+    
+        array[i, j] = Convert.ToDouble(new Random().Next(-100,100)/10.0); 
+        
 }
  
-Console.WriteLine("Количсетво элементов больше нуля - " + count);
+for (int i = 0; i < m; i++) 
+{
+    for (int j = 0; j < n; j++)
+    
+        Console.Write(array[i,j] + " ");
+        Console.WriteLine();
+       
 }
-m();
+}
+fillnmarray();
 
-void crosspoint()
+string searchnumber()
 {
-Console.WriteLine("Введите b1");
-double b1 = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите k1");
-double k1 = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите b2");
-double b2 = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите k2");
-double k2 = Convert.ToInt32 (Console.ReadLine());
-double y = k1*(b2-b1)/(k1-k2) + b1;
-double x =(b2-b1)/(k1-k2);
-Console.WriteLine("Координата точки пересечения " + x + " " + y );
+Console.WriteLine("Введите количество строк:");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов:");
+int n = Convert.ToInt32(Console.ReadLine());
+int[,] array = new int[m, n];
+ 
+for (int i = 0; i < m; i++) 
+{
+    for (int j = 0; j <n; j++)
+    
+        array[i, j] = Convert.ToInt32(new Random().Next(0,100)); 
+        
 }
-crosspoint();
+ 
+for (int i = 0; i < m; i++) 
+{
+    for (int j = 0; j < n; j++)
+    
+        Console.Write(array[i,j] + " ");
+        Console.WriteLine();
+       
+}
+int[] arrayod = new int[m*n];
+int count = 0;
+{
+            
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            arrayod[count++] = array[i, j];
+        }
+     }
+}
+Console.WriteLine("Введите позицию элемента в двумерном массиве");
+int num = Convert.ToInt32(Console.ReadLine());
+int number = num - 1;
+string search = " ";
+if (number>m*n)
+search = "такого числа в массиве нет";
+ else
+ {
+object position = arrayod.GetValue(number);
+search = ("Значение ячейки с этим номером " + position);
+ }
+ return search;
+ }
+ Console.WriteLine(searchnumber())
 
-void triangle()
+ void armeen()
 {
-
-Console.WriteLine("Введите первое число");
-double a = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите второе число");
-double b = Convert.ToInt32 (Console.ReadLine());
-Console.WriteLine("Введите третье число");
-double c = Convert.ToInt32 (Console.ReadLine());
-if (a < b + c && b < a + c && c < a + b)
+Console.WriteLine("Введите количество строк:");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов:");
+int n = Convert.ToInt32(Console.ReadLine());
+int[,] array = new int[m, n];
+ 
+for (int i = 0; i < m; i++) 
 {
-    Console.WriteLine ("Являются сторонами треугольника");
+    for (int j = 0; j <n; j++)
+    
+        array[i, j] = Convert.ToInt32(new Random().Next(0,100)); 
+        
 }
-else
+ 
+for (int i = 0; i < m; i++) 
 {
-    Console.WriteLine ("Не являются сторонами треугольника");
+    for (int j = 0; j < n; j++)
+    
+        Console.Write(array[i,j] + " ");
+        Console.WriteLine();
+       
 }
-double p = (a+b+c)/2;
-double s = Math. Sqrt(p * (p-a)*(p-b)*(p-c));
-Console.WriteLine ("Площадь треугольника " + s);
-double alpha = (Math.Acos((a*a + c*c - b*b)/(2*a*c)))*180/Math.PI;
-Console.WriteLine ("Угол альфа " + alpha + " градуса");
-double betha = (Math.Acos((a*a + b*b - c*c)/(2*a*b)))*180/Math.PI;
-Console.WriteLine ("Угол бета " + betha + " градуса");
-double gamma = (Math.Acos((b*b + c*c - a*a)/(2*c*b)))*180/Math.PI;
-Console.WriteLine ("Угол гамма " + gamma + " градуса");
-if (alpha == 90 || betha == 90 || gamma == 90)
+double arithmeticMean = 0;
+for (int i = 0; i < m; i++) 
 {
-    Console.WriteLine("Треугольник прямоугольный");
-}
-if (alpha == betha && betha == gamma && gamma == alpha)
-{
-    Console.WriteLine("Треугольник равносторонний");
-}
-if ((alpha == betha && gamma != alpha) || (betha == gamma && alpha !=betha) || (gamma == alpha && betha !=gamma))
-{
-    Console.WriteLine("Треугольник равнобедренный");
-}
-if (alpha == 90 && betha == 90 && gamma == 90)
-{
-    Console.WriteLine("Треугольник прямоугольный");
+    double sum = 0;
+    for (int j = 0; j <n; j++)
+    {
+        sum+=array[j,i];
+    }
+    arithmeticMean = sum/n;
+    Console.WriteLine("средннее арифметическое " + (i+1) + "-го столбца " + arithmeticMean);   
 }
 }
-triangle();
+armeen();
+ 
