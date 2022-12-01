@@ -1,69 +1,80 @@
-class TicTacToeBoard:
+class MinStat:
     def __init__(self):
-        self.count = 0
-        self.board = [['-', '-', '-'],['-', '-', '-'],['-', '-', '-']]
-    
-    def new_game(self):
-        self.count = 0
-        self.board = [['-', '-', '-'],['-', '-', '-'],['-', '-', '-']]
-    
-    def get_field(self):
-        return self.board
- 
-    def check_field(self):
-        if self.board[0][0] == 'X' and self.board[0][1] == 'X' and self.board[0][2] == 'X':
-            return 'X'
-        if self.board[0][0] == '0' and self.board[0][1] == '0' and self.board[0][2] == '0':
-            return '0'
-        if self.board[1][0] == 'X' and self.board[1][1] == 'X' and self.board[1][2] == 'X':
-            return 'X'
-        if self.board[1][0] == '0' and self.board[1][1] == '0' and self.board[1][2] == '0':
-            return '0'
-        if self.board[2][0] == 'X' and self.board[2][1] == 'X' and self.board[2][2] == 'X':
-            return 'X'
-        if self.board[2][0] == '0' and self.board[2][1] == '0' and self.board[2][2] == '0':
-            return '0'
-        if self.board[0][0] == 'X' and self.board[1][0] == 'X' and self.board[2][0] == 'X':
-            return 'X'
-        if self.board[0][0] == '0' and self.board[1][0] == '0' and self.board[2][0] == '0':
-            return '0'
-        if self.board[0][1] == 'X' and self.board[1][1] == 'X' and self.board[2][1] == 'X':
-            return 'X'
-        if self.board[0][1] == '0' and self.board[1][1] == '0' and self.board[2][1] == '0':
-            return '0'
-        if self.board[0][2] == 'X' and self.board[1][2] == 'X' and self.board[2][2] == 'X':
-            return 'X'
-        if self.board[0][2] == '0' and self.board[1][2] == '0' and self.board[2][2] == '0':
-            return '0'
-        if self.board[0][0] == 'X' and self.board[1][1] == 'X' and self.board[2][2] == 'X':
-            return 'X'
-        if self.board[0][0] == '0' and self.board[1][1] == '0' and self.board[2][2] == '0':
-            return '0'
-        if self.board[0][2] == 'X' and self.board[1][1] == 'X' and self.board[2][0] == 'X':
-            return 'X'
-        if self.board[0][2] == '0' and self.board[1][1] == '0' and self.board[2][0] == '0':
-            return '0'
-        if '-' not in self.board[0] and '-' not in self.board[1] and '-' not in self.board[2]:
-            return 'D'
-        else:
-            return 'None'
+        self.value = []
 
-    def make_move(self, row, col):
-        win = self.check_field()
-        if win == 'X':
-            return 'Победил игрок X, игра завершена'
-        if win == '0':
-            return 'Победил игрок 0, игра завершена'
-        if win == 'D':
-            return 'Ничья, игра завершена'
-        if win == 'None':
-            print ('Делаем ход')
-        if self.board[row-1][col-1] == '-':
-            if self.count % 2 != 0:
-                self.board[row-1][col-1] = 'X'
-                self.count += 1
-            else:
-                self.board[row-1][col-1] = '0'
-                self.count += 1
-        if self.board[row-1][col-1] == 'X' or '0':
-            return(f'Клетка {row} { col} занята')
+    def add_number(self, number):
+        self.value.append(number)
+
+    def result(self):
+        if self.value == []:
+            return None
+        else:
+            return min(self.value)
+
+
+class MaxStat:
+    def __init__(self):
+        self.value = []
+
+    def add_number(self, number):
+        self.value.append(number)
+
+    def result(self):
+        if self.value == []:
+            return None
+        else:
+            return max(self.value)
+
+
+class AverageStat:
+    def __init__(self):
+        self.value = []
+
+    def add_number(self, number):
+        self.value.append(number)
+
+    def result(self):
+        if self.value == []:
+            return None
+        else:
+            return sum(self.value) / len(self.value)
+
+
+class Table():
+
+    def __init__(self, rows, cols):
+        self.rows = rows
+        self.cols = cols
+        self.table = [[0 for i in range(cols)] for j in range(rows)]
+
+    def get_value(self, row, col):
+        if (0 <= row and row < self.rows) and (0 <= col and col < self.cols):
+            return self.table[row][col]
+        else:
+            return None
+
+    def set_value(self, row, col, value):
+        self.table[row][col] = value
+
+    def n_rows(self):
+        return self.rows
+
+    def n_cols(self):
+        return self.cols
+
+    def delete_row(self, row):
+        self.table.pop(row)
+        self.rows -= 1
+
+    def delete_col(self, col):
+        self.table.pop(col)
+        self.cols -= 1
+
+    def add_row(self, row):
+        self.table.insert(row, [0 for k in range(self.rows)])
+        self.rows += 1
+
+    def add_col(self, col):
+        for row in range(self.rows):
+            self.table[row].insert(col, 0)
+        self.cols += 1
