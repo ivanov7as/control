@@ -39,9 +39,9 @@ class AverageStat:
         else:
             return sum(self.value) / len(self.value)
 
+        
 
 class Table:
-
     def __init__(self, rows, cols):
         self.rows = rows
         self.cols = cols
