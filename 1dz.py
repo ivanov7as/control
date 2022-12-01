@@ -11,7 +11,6 @@ class MinStat:
         else:
             return min(self.value)
 
-
 class MaxStat:
     def __init__(self):
         self.value = []
@@ -25,7 +24,6 @@ class MaxStat:
         else:
             return max(self.value)
 
-
 class AverageStat:
     def __init__(self):
         self.value = []
@@ -38,7 +36,6 @@ class AverageStat:
             return None
         else:
             return sum(self.value) / len(self.value)
-
         
 
 class Table:
