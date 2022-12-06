@@ -1,77 +1,60 @@
-class MinStat:
-    def __init__(self):
-        self.value = []
+import markup as markup
+import telebot
+from telebot import types
 
-    def add_number(self, number):
-        self.value.append(number)
+token = '5912536079:AAGlR28LypPT3G3QV_Dm_QI0FjlpCLmFxEQ'
+bot = telebot.TeleBot(token)
 
-    def result(self):
-        if self.value == []:
-            return None
-        else:
-            return min(self.value)
 
-class MaxStat:
-    def __init__(self):
-        self.value = []
+@bot.message_handler(commands=['start'])
+def start_message(message):
+    bot.send_message(message.chat.id, "Привет это бот-гороскоп.Если хотите узнать грядущее введите слово /zodiac")
 
-    def add_number(self, number):
-        self.value.append(number)
 
-    def result(self):
-        if self.value == []:
-            return None
-        else:
-            return max(self.value)
+@bot.message_handler(commands=['zodiac'])
 
-class AverageStat:
-    def __init__(self):
-        self.value = []
+def button_message(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("Овен")
+    item2 = types.KeyboardButton("Телец")
+    item3 = types.KeyboardButton("Близнецы")
+    item4 = types.KeyboardButton("Рак")
+    item5 = types.KeyboardButton("Лев")
+    item6 = types.KeyboardButton("Дева")
+    item7 = types.KeyboardButton("Весы")
+    item8 = types.KeyboardButton("Скорпион")
+    item9 = types.KeyboardButton("Стрелец")
+    item10 = types.KeyboardButton("Козерог")
+    item11 = types.KeyboardButton("Водолей")
+    item12 = types.KeyboardButton("Рыбы")
+    markup.add(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12)
+    bot.send_message(message.chat.id, 'Выберите что вам надо', reply_markup=markup)
 
-    def add_number(self, number):
-        self.value.append(number)
+@bot.message_handler(content_types=['text'])
+def message_reply(message):
+    if message.text == "Овен":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/aries/today/")
+    if message.text == "Телец":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/taurus/today/")
+    if message.text == "Близнецы":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/gemini/today/")
+    if message.text == "Рак":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/cancer/today/")
+    if message.text == "Лев":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/leo/today/")
+    if message.text == "Дева":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/virgo/today/")
+    if message.text == "Весы":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/libra/today/")
+    if message.text == "Скорпион":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/scorpio/today/")
+    if message.text == "Стрелец":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/sagittarius/today/")
+    if message.text == "Козерог":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/capricorn/today/")
+    if message.text == "Водолей":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/aquarius/today/")
+    if message.text == "Рыбы":
+        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/pisces/today/")
 
-    def result(self):
-        if self.value == []:
-            return None
-        else:
-            return sum(self.value) / len(self.value)
-        
-
-class Table:
-    def __init__(self, rows, cols):
-        self.rows = rows
-        self.cols = cols
-        self.table = [[0 for i in range(cols)] for j in range(rows)]
-
-    def get_value(self, row, col):
-        if (0 <= row and row < self.rows) and (0 <= col and col < self.cols):
-            return self.table[row][col]
-        else:
-            return None
-
-    def set_value(self, row, col, value):
-        self.table[row][col] = value
-
-    def n_rows(self):
-        return self.rows
-
-    def n_cols(self):
-        return self.cols
-
-    def delete_row(self, row):
-        self.table.pop(row)
-        self.rows -= 1
-
-    def delete_col(self, col):
-        self.table.pop(col)
-        self.cols -= 1
-
-    def add_row(self, row):
-        self.table.insert(row, [0 for k in range(self.rows)])
-        self.rows += 1
-
-    def add_col(self, col):
-        for row in range(self.rows):
-            self.table[row].insert(col, 0)
-        self.cols += 1
+bot.infinity_polling()
