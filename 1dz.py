@@ -1,60 +1,75 @@
-import markup as markup
-import telebot
-from telebot import types
+package com.company;
 
-token = '5912536079:AAGlR28LypPT3G3QV_Dm_QI0FjlpCLmFxEQ'
-bot = telebot.TeleBot(token)
+public class Main {
 
+    public static void main(String[] args) {
+        
+        class Solution1 {
+            public String mergeAlternately(String word1, String word2) {
+                int l1 = word1.length();
+                int l2 = word2.length();
+                if (l1 > l2) {
+                    l1 = l2;
+                }
+                StringBuilder output = new StringBuilder();
+                for (int i = 0; i < l1; ++i) {
+                    output.append(word1.charAt(i));
+                    output.append(word2.charAt(i));
+                }
+                return output.append(word1.substring(l1)).append(word2.substring(l1)).toString();
+            }
+        }
 
-@bot.message_handler(commands=['start'])
-def start_message(message):
-    bot.send_message(message.chat.id, "Привет это бот-гороскоп.Если хотите узнать грядущее введите слово /zodiac")
+        class Solution4 {
+            public String reverseWords(String s) {
+                StringBuilder sb = new StringBuilder();
+                int end = s.length() - 1;
+                while (end >= 0) {
+                    if (s.charAt(end) == ' ') {
+                        end -= 1;
+                        continue;
+                    }
+                    int start = end - 1;
+                    while (start >= 0 && s.charAt(start) != ' ') {
+                        start -= 1;
+                    }
+                    sb.append(" ");
+                    sb.append(s.substring(start + 1, end + 1));
+                    end = start - 1;
+                }
+                if (sb.length() > 0) {
+                    sb.deleteCharAt(0);
+                }
+                return sb.toString();
+            }
+        }
 
+        class Solution5 {
+            public boolean isPalindrome(String s) {
+                for (int left = 0, right = s.length() - 1; left < right; left++, right--) {
+                    while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                        left++;
+                    }
+                    while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                        right--;
+                    }
+                    if (left < right && Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
 
-@bot.message_handler(commands=['zodiac'])
+        class Solution2 {
+            public int removeElement(int[] nums, int val) {
+                int n = 0;
+                for (int i : nums)
+                    if (i != val)
+                        nums[n++] = i;
+                return n;
+            }
 
-def button_message(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    item1 = types.KeyboardButton("Овен")
-    item2 = types.KeyboardButton("Телец")
-    item3 = types.KeyboardButton("Близнецы")
-    item4 = types.KeyboardButton("Рак")
-    item5 = types.KeyboardButton("Лев")
-    item6 = types.KeyboardButton("Дева")
-    item7 = types.KeyboardButton("Весы")
-    item8 = types.KeyboardButton("Скорпион")
-    item9 = types.KeyboardButton("Стрелец")
-    item10 = types.KeyboardButton("Козерог")
-    item11 = types.KeyboardButton("Водолей")
-    item12 = types.KeyboardButton("Рыбы")
-    markup.add(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12)
-    bot.send_message(message.chat.id, 'Выберите что вам надо', reply_markup=markup)
-
-@bot.message_handler(content_types=['text'])
-def message_reply(message):
-    if message.text == "Овен":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/aries/today/")
-    if message.text == "Телец":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/taurus/today/")
-    if message.text == "Близнецы":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/gemini/today/")
-    if message.text == "Рак":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/cancer/today/")
-    if message.text == "Лев":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/leo/today/")
-    if message.text == "Дева":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/virgo/today/")
-    if message.text == "Весы":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/libra/today/")
-    if message.text == "Скорпион":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/scorpio/today/")
-    if message.text == "Стрелец":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/sagittarius/today/")
-    if message.text == "Козерог":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/capricorn/today/")
-    if message.text == "Водолей":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/aquarius/today/")
-    if message.text == "Рыбы":
-        bot.send_message(message.chat.id, "https://horo.mail.ru/prediction/pisces/today/")
-
-bot.infinity_polling()
+        }
+    }
+}
