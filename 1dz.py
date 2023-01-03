@@ -1,55 +1,70 @@
 package com.company;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
 
     public static void main(String[] args) {
-        class SolutionMaxAreaOfIsland {
-
-            public int maxAreaOfIsland(int[][] grid) {
-                int max = 0;
-                for (int i = 0; i < grid.length; ++i) {
-                    for (int j = 0; j < grid[0].length; ++j) {
-                        max = Math.max(max, dfs(grid, i, j));
+        class arraysEquaility {
+            public static void equalityList(ArrayList<Integer> arrayList1, ArrayList<Integer> arrayList2) {
+                if (arrayList1.size() != arrayList2.size()) {
+                    System.out.println("Массивы не равны");
+                    return;
+                }
+                for (int i = 0; i < arrayList1.size(); i++) {
+                    if (arrayList1.get(i) != arrayList2.get(i)) {
+                        System.out.println("Массивы не равны");
+                        return;
                     }
                 }
-                return max;
-            }
-
-            public int dfs(int[][] grid, int i, int j) {
-                if (i < 0 || i == grid.length || j < 0 || j == grid[0].length) return 0;
-                if (grid[i][j] != 1) return 0;
-                grid[i][j] = 0;
-                return 1 + dfs(grid, i + 1, j) + dfs(grid, i - 1, j) + dfs(grid, i, j + 1) + dfs(grid, i, j - 1);
+                System.out.println("Массивы равны");
             }
         }
-        class TreeNode {
-            int val;
-            TreeNode left;
-            TreeNode right;
+    }
 
-            TreeNode() {
+    class arraysNumCheck {
+        public static void checkArray(ArrayList<Integer> arrayList1, ArrayList<Integer> arrayList2, int num) {
+            int count = 0;
+            for (Integer integer : arrayList1) {
+                if (integer == num) {
+                    count++;
+                }
             }
-
-            TreeNode(int val) {
-                this.val = val;
+            for (int i = 0; i < arrayList2.size(); i++) {
+                if (arrayList2.get(i) == num) {
+                    count--;
+                }
             }
-
-            TreeNode(int val, TreeNode left, TreeNode right) {
-                this.val = val;
-                this.left = left;
-                this.right = right;
+            if (count == 0) {
+                System.out.println("Число " + num + " встречается в массивах одинаковое количество раз");
+            } else {
+                System.out.println("Число " + num + " встречается в массивах разное количество раз");
             }
         }
+    }
 
-        class SolutionIsSymmetric {
-            public boolean isSymmetric(TreeNode root) {
-                return isSymmetric(root, root);
+    class arraysSort {
+        public static void sortEven(ArrayList<Integer> arrayList1) {
+            ArrayList<Integer> arrayList2 = new ArrayList<>();
+            for (int elem : arrayList1) {
+                if (elem % 2 == 0) {
+                    arrayList2.add(elem);
+                }
             }
-
-            private boolean isSymmetric(TreeNode p, TreeNode q) {
-                if (p == null || q == null) return p == q;
-                return p.val == q.val && isSymmetric(p.left, q.right) && isSymmetric(p.right, q.left);
+            Collections.sort(arrayList2);
+            int j = 0;
+            for (int i = 0; i < arrayList1.size(); i++) {
+                if (arrayList1.get(i) % 2 == 0) {
+                    arrayList1.set(i, arrayList2.get(j++));
+                }
             }
+            System.out.println(arrayList1);
+        }
+    }
+    class arraysDelete {
+        public static void delEven(ArrayList<Integer> arrayList1) {
+            arrayList1.removeIf(num -> (int) num % 2 == 0);
+            System.out.println(arrayList1);
         }
     }
 }
