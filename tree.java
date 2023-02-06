@@ -1,14 +1,12 @@
-package FamilyTree;
-
 import java.util.List;
 
-public interface TreeNode {
+public interface Tree {
 
-    public List<TreeNode> getParent();
+    public List<Tree> getParent();
 
-    public List<TreeNode> getChildren();
+    public List<Tree> getChildren();
 
-    public void setParent(TreeNode parent);
+    public void setParent(Tree parent);
 
-    public void addChildren(TreeNode children);
+    public void addChildren(Tree children);
 }
